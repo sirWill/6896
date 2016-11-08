@@ -43,22 +43,18 @@ bool Cycle_Buffer::put(int _val)
 		ИНАЧЕ
 			запись невозможна — вернуть false			
 	 */
-	if (!full)
-	{
-		array[in] = _val;
-		in++;
-		if(in == BUFLEN)
-			in = 0;
-		empty = false;
-		if(in == out){
-			full = true;
-		}
-		return true;
-	}
-	else
+	if (full)
 	{
 		return false;
 	}
+	array[in++] = _val;
+	if(in == BUFLEN)
+		in = 0;
+	empty = false;
+	if(in == out){
+		full = true;
+	}
+	return true;
 }
 
 
