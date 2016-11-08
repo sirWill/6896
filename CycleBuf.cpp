@@ -81,21 +81,17 @@ int Cycle_Buffer::get()
 		ИНАЧЕ
 			буфер пустой — вернуть 0
 	 */
-	if (!empty)
-	{
-		int tmp;
-		tmp = array[out];
-		cout << tmp;
-		out++;
-		if(out == BUFLEN)
-			out = 0;
-		full = 0;
-		if(out == in)
-			empty = 1;
-		return tmp;
-	}
-	else
+	if(empty)
 	{
 		return 0;
 	}
+	int tmp;
+	tmp = array[out++];
+	// cout << tmp;
+	if(out == BUFLEN)
+		out = 0;
+	full = 0;
+	if(out == in)
+		empty = 1;
+	return tmp;
 }
